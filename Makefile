@@ -9,7 +9,7 @@ build: setup
 watch: setup
 	npm run watch
 
-setup-cron: build
+cron-setup: build
 	cp .env lib/
 	@echo "Add this to your crontab (will open in 10 sec):\n*/15 * * * * $(shell pwd)/bin/weatherize"
 	@sleep 10
@@ -28,7 +28,7 @@ prepare: build
 
 	rm -rf dist/
 
-publish:
+aws-publish:
 	# requires the ROLE is set
 ifndef ROLE
 	$(error ROLE is not set)
@@ -63,15 +63,15 @@ endif
 		--rule rate-15-minutes \
 		--targets="[{\"Arn\": \"$(FN_ARN)\", \"Id\": \"$(NAME)\"}]"
 
-update: prepare
+aws-update: prepare
 	aws lambda update-function-code \
 	--function-name $(NAME) \
 	--zip-file fileb://wx.zip \
 	--profile default
 
-run:
-	./bin/weatherize
-
-clean-aws:
+aws-clean:
 	aws lambda delete-function --function-name $(NAME)
 	aws events delete-rule --name rate-15-minutes
+
+run:
+	./bin/weatherize
