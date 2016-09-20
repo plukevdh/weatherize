@@ -2,7 +2,7 @@
 
 Emoji in Slack usernames is pretty 👌. But what if we could make it mean something?
 
-Using this small JS script, you can have your profile info reflect the local weather at will using the [Forecast.io](Forecast.io) API.
+Using this small JS script, you can have your profile info reflect the local weather [powered by Dark Sky](https://darksky.net/poweredby/).
 
 Slack will append your weather emoji to the `last_name` field in your profile so that it will show up in your Slack client for all to see.
 
