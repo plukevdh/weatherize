@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 
-const FORCASTIO_URI = "https://api.forecast.io/forecast"
+const FORCASTIO_URI = "https://api.darksky.net/forecast/"
 const SLACK_URI = "https://slack.com/api/users.profile.set"
 
 export default function loadEnv() {
